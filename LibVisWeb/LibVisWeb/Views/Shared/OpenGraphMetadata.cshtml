@@ -1,0 +1,27 @@
+﻿@model LibVisWeb.Models.OpenDataMetadata;
+
+@{
+    Layout = "";
+ }
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta property="og:title" content="@Model.title" />
+        <meta property="og:description" content="@Model.description" />
+        <meta property="og:image" content="@Model.image" />
+        <meta property="og:type" content="@Model.type" />
+        <meta property="og:url" content="@Model.url" />
+
+
+        <title>@Model.title</title>
+        <base href="~/" />
+    </head>
+    <body>
+    
+        <article>
+            <h1>@Model.title</h1>
+            <img src="@Model.image" width="320" />
+            <div>@Model.text</div>
+        </article>
+    </body>
+</html>

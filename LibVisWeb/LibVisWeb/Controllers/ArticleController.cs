@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 
 namespace LibVisWeb.Controllers
 {
@@ -19,6 +20,13 @@ namespace LibVisWeb.Controllers
     [Route("api/[controller]")]
     public class ArticleController : Controller
     {
+        [Route("/[controller]/{id}")]
+        public ActionResult OpenGraphMetadata(string id)
+        {
+            if (!HttpContext.Request.Headers["User-Agent"].Contains("facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) return View("~/Views/Home/Index.cshtml");
+            var model = Get(token:null,lang:0,id:id);
+            return View("OpenGraphMetadata", new OpenDataMetadata() { title = model.Title, description = model.StartingText, image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/api/Article/Image?id={model.Id}", text = model.Text, type = "article", url = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}"});
+        }
 
         [HttpGet("[action]")]
         public ArticleModel Get(string token, int lang, string id)
