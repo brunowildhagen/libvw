@@ -253,7 +253,7 @@ class Footer extends React.Component<FooterProps, {}> {
 
     private renderLogo() {
 
-        if (window.location.href.indexOf("ancap.su") > 0) {
+        if (typeof(window) != "undefined" && window.location.href.indexOf("ancap.su") > 0) {
 
             return <a href="/">
                 <img className="td-retina-data" src={logo1Img}></img>
@@ -287,7 +287,7 @@ class Footer extends React.Component<FooterProps, {}> {
 
     private renderMessage() {
 
-        if (window.location.href.indexOf("ancap.su") > 0) {
+        if (typeof(window) != "undefined" && window.location.href.indexOf("ancap.su") > 0) {
 
             return <div className="footer-text-wrap">
                 {RacMsg.Get(RacMsg.Id.FooterAncapSuMessage1)} &nbsp;

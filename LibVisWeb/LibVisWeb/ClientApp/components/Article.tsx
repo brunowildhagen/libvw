@@ -69,8 +69,7 @@ class Article extends React.Component<ArticleProps, {}> {
             this.props.requestArticle(this.props.match.params.id, this.props.lang);
             this.curid = this.props.match.params.id;
 
-        } else {
-
+        } else {           
             this.contentReady = true;
             this.forceUpdate();
 
@@ -278,7 +277,7 @@ class Article extends React.Component<ArticleProps, {}> {
 
     public render() {
 
-        
+        //if (JSON.stringify(this.props.article) != null) throw typeof(this.props.article);
 
         if (this.curid != this.props.match.params.id) {
             
@@ -287,7 +286,6 @@ class Article extends React.Component<ArticleProps, {}> {
         }
 
         if (this.props.hasArticle && this.props.article != null && this.props.article.Paragraphs.length > 0) {
-
             /* Monta o parágrafo */
             
             var primeiro: string = this.props.article.Paragraphs[0].trim();
@@ -932,7 +930,6 @@ class Article extends React.Component<ArticleProps, {}> {
             );
 
         } else {
-
             return (
 
                 <div>

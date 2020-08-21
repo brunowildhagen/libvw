@@ -20,6 +20,8 @@ namespace LibVisWeb.Controllers
     public class ArticleController : Controller
     {
 
+
+
         [HttpGet("[action]")]
         public ArticleModel Get(string token, int lang, string id)
         {

@@ -54,7 +54,7 @@ export default class storage {
     //
     private constructor() {
 
-        this.localStorageSupported = typeof window['localStorage'] != "undefined" && window['localStorage'] != null;
+        this.localStorageSupported = typeof (window) != "undefined" && typeof window['localStorage'] != "undefined" && window['localStorage'] != null;
 
     }
 

@@ -1,5 +1,10 @@
-
-<div id="react-app" />
+@{
+    //TODO: Implementar a lógica nas controllers para setar o tipo da actione os dados
+    ViewBag.Model = new LibVisWeb.Models.ArticleModel() { Title = "Teste", Paragraphs = new List<string>(new[] { "paragrafo 1", "paragrafo 2", "paragrafo 3" })};
+}
+<div id="react-app" asp-prerender-module="ClientApp/dist/main-server.js" 
+    asp-prerender-data=@Json.Serialize(@ViewBag.Model, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()})
+/>
 
 @section scripts {
     <script src="~/dist/main-client.js" asp-append-version="true"></script>

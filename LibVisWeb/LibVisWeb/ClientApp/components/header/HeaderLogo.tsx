@@ -38,7 +38,7 @@ class HeaderLogo extends React.Component<HeaderLogoProps, {}> {
 
     private renderLogo() {
 
-        if (window.location.href.indexOf("ancap.su") > 0) {
+        if (typeof(window) != "undefined" && window.location.href.indexOf("ancap.su") > 0) {
 
             return <a href="/">
                 <img src={logo_as_pt_Img} alt="ancap.su" className="tda-header-logo-img-size"></img>

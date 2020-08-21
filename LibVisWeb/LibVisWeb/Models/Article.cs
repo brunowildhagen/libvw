@@ -285,7 +285,6 @@ namespace LibVisWeb.Models
 
     public class ArticleModel
     {
-
         public string Id { get; set; }
         public string Title { get; set; }
 

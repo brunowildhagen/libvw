@@ -7,6 +7,7 @@ import { createMemoryHistory } from 'history';
 import { createServerRenderer, RenderResult } from 'aspnet-prerendering';
 import { routes } from './routes';
 import configureStore from './configureStore';
+import { ArticleModel } from './models/Article';
 
 export default createServerRenderer(params => {
     return new Promise<RenderResult>((resolve, reject) => {
@@ -16,9 +17,12 @@ export default createServerRenderer(params => {
         const urlAfterBasename = params.url.substring(basename.length);
         const store = configureStore(createMemoryHistory());
         store.dispatch(replace(urlAfterBasename));
-
         // Prepare an instance of the application and perform an inital render that will
         // cause any async tasks (e.g., data access) to begin
+        if (params.data != null && params.data.value != null) {
+            params.data = JSON.parse(params.data.value);
+            store.dispatch({ type: 'RECEIVE_ARTICLE', payload: params.data as ArticleModel });
+        }
         const routerContext: any = {};
         const app = (
             <Provider store={ store }>
@@ -28,7 +32,7 @@ export default createServerRenderer(params => {
         renderToString(app);
 
         // If there's a redirection, just send this information back to the host application
-        if (routerContext.url) {
+        if (routerContext.url) {        
             resolve({ redirectUrl: routerContext.url });
             return;
         }
